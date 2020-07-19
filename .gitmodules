@@ -1,0 +1,6 @@
+[submodule "Model01-Firware"]
+	path = Model01-Firware
+	url = https://github.com/keyboardio/Model01-Firmware.git
+[submodule "Model01-Firmware"]
+	path = Model01-Firmware
+	url = https://github.com/keyboardio/Model01-Firmware.git
