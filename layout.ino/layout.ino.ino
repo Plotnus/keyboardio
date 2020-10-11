@@ -14,6 +14,7 @@
 
 // The Kaleidoscope core
 #include "Kaleidoscope.h"
+#include "Kaleidoscope-TopsyTurvy.h"
 
 // Support for storing the keymap in EEPROM
 #include "Kaleidoscope-EEPROM-Settings.h"
@@ -166,7 +167,7 @@ KEYMAPS(
 
     LockLayer(COLMAK_DH),   Key_6, Key_7, Key_8, Key_9, Key_0, LockLayer(WORKMAN),
     Key_Enter,      Key_F, Key_G, Key_C, Key_R, Key_L, Key_Equals,
-                    Key_D, Key_H, Key_T, Key_N, Key_S, Key_Minus,
+                    Key_D, Key_H, Key_T, Key_N, Key_S, TOPSY(Minus),
     Key_RightAlt,   Key_B, Key_M, Key_W, Key_V, Key_Z, Key_Slash,
     Key_RightAlt, Key_RightControl, Key_Spacebar, Key_RightShift,
     ShiftToLayer(FUNCTION)
@@ -400,15 +401,17 @@ static void toggleKeyboardProtocol(uint8_t combo_index) {
 /** Magic combo list, a list of key combo and action pairs the firmware should
  * recognise.
  */
-USE_MAGIC_COMBOS({.action = toggleKeyboardProtocol,
-                  // Left Fn + Esc + Shift
-                  .keys = { R3C6, R2C6, R3C7 }
-                 });
+USE_MAGIC_COMBOS({
+  .action = toggleKeyboardProtocol,
+  // Left Fn + Esc + Shift
+  .keys = { R3C6, R2C6, R3C7 }
+});
 
 // First, tell Kaleidoscope which plugins you want to use.
 // The order can be important. For example, LED effects are
 // added in the order they're listed here.
 KALEIDOSCOPE_INIT_PLUGINS(
+  TopsyTurvy,
   // The EEPROMSettings & EEPROMKeymap plugins make it possible to have an
   // editable keymap in EEPROM.
   EEPROMSettings,
